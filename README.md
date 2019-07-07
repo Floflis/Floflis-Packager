@@ -27,3 +27,4 @@ Coming soon, a application store will do these tasks automatically, without need
 * Floflis tree folder installable on Linux emulators
 * FMWK for C2, and symlink from `../Floflis/libs`
 * Script to move need scripts to choosen folder
+* Ask to open Electron app, detect it doesn't opens, and teach
