@@ -25,4 +25,4 @@ if [ "$construct2" = "o" ]; then
    chmod 755 c2init.sh && ./c2init.sh
    echo "Done patching for Construct 2."
 fi
-echo "Done! Your app is ready."
+echo "(✓) Done! Your app is ready."
