@@ -3,7 +3,7 @@
 Make a working and lightweight Electron app for Floflis.
 
 * No lots of Chromium running (not implemented yet, depends upon HTML5Apps Platform)
-* No huge node_modules folder; common modules and libraries shared between all apps
+* No huge node_modules folder; common modules and libraries shared between all apps on Floflis
 
 ## Patching your app
 
@@ -28,4 +28,5 @@ Coming soon, a application store will do these tasks automatically, without need
 * Ask to open Electron app, detect it doesn't opens, and teach
 * `c2package.sh` for packaging for Construct 2 projects
 * FMWK for C2, and symlink from `../Floflis/libs`
+* On Linuxes other than Floflis, symlink `node_modules` from `/usr/lib` instead of `/1/Floflis/libs`
 * Support Construct 3, Godot, Unity and GDevelop engines
