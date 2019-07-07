@@ -22,9 +22,10 @@ Coming soon, a application store will do these tasks automatically, without need
 
 ### To do
 
-* `c2package.sh` for packaging for Construct 2 projects
-* Support Construct 3, Godot, Unity and GDevelop engines
 * Floflis tree folder installable on Linux emulators
-* FMWK for C2, and symlink from `../Floflis/libs`
 * Script to move need scripts to choosen folder
+* If node_modules is found, ask to move it
 * Ask to open Electron app, detect it doesn't opens, and teach
+* `c2package.sh` for packaging for Construct 2 projects
+* FMWK for C2, and symlink from `../Floflis/libs`
+* Support Construct 3, Godot, Unity and GDevelop engines
