@@ -23,6 +23,5 @@ sudo npm install -g
 if [ "$construct2" = "o" ]; then
    echo "Detected this app/game uses Construct 2 engine. Applying special patch for C2..."
    chmod 755 c2init.sh && ./c2init.sh
-   echo "Done patching for Construct 2."
 fi
 echo "(✓) Done! Your app is ready."
