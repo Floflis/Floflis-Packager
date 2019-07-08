@@ -7,7 +7,11 @@ Make a working and lightweight Electron app for Floflis.
 
 ## Patching your app
 
-Just move `install.sh` and `config` file to your app's source. Instruct the users to download your app to `/1/Apps` folder, and to do the following command in Terminal: `cd {path_to_your_app_folder} && sudo chmod 755 install.sh && chmod 755 config && ./install.sh`.
+Just move `install.sh` and `config` file to your app's source. Instruct the users to download your app to `/1/Apps` folder, and to do the following command in Terminal:
+
+```bash
+cd {path_to_your_app_folder} && sudo chmod 755 install.sh && chmod 755 config && ./install.sh
+```
 
 If openning Terminal direct from the folder, it is just: `chmod 755 install.sh && chmod 755 config && ./install.sh`.
 
@@ -29,4 +33,5 @@ Coming soon, a application store will do these tasks automatically, without need
 * `c2package.sh` for packaging for Construct 2 projects
 * FMWK for C2, and symlink from `../Floflis/libs`
 * On Linuxes other than Floflis, symlink `node_modules` from `/usr/lib` instead of `/1/Floflis/libs`
+* Installed in Floflis as CLI application store
 * Support Construct 3, Godot, Unity and GDevelop engines
