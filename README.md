@@ -10,10 +10,10 @@ Make a working and lightweight Electron app for Floflis.
 Just move `install.sh` and `config` file to your app's source. Instruct the users to download your app to `/1/Apps` folder, and to do the following command in Terminal:
 
 ```bash
-cd {path_to_your_app_folder} && sudo chmod 755 install.sh && chmod 755 config && ./install.sh
+cd {path_to_your_app_folder} && sudo chmod 755 install.sh && ./install.sh
 ```
 
-If openning Terminal direct from the folder, it is just: `chmod 755 install.sh && chmod 755 config && ./install.sh`.
+If openning Terminal direct from the folder, it is just: `chmod 755 install.sh && ./install.sh`.
 
 * No need to build your app; Floflis uses its own Electron binary. Works directly from your app's source-code.
 
@@ -35,3 +35,4 @@ Coming soon, a application store will do these tasks automatically, without need
 * On Linuxes other than Floflis, symlink `node_modules` from `/usr/lib` instead of `/1/Floflis/libs`
 * Installed in Floflis as CLI application store
 * Support Construct 3, Godot, Unity and GDevelop engines
+* Ask if user really wants to use `npm install`
