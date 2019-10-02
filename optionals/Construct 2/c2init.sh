@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cat << "EOF"
 
 ------------------------------
@@ -23,7 +23,7 @@ rm -f offlineClient.js && ln -s /1/Floflis/libs/game-engines/c2/offlineClient.js
 echo "-> c2webappstart.js..."
 rm -f c2webappstart.js && ln -s /1/Floflis/libs/game-engines/c2/c2webappstart.js c2webappstart.js
 echo "-> jquery*.min.js..."
-rm -f jquery-2.1.1.min.js && ln -s /1/Floflis/libs/game-engines/c2/jquery-2.1.1.min.js jquery-2.1.1.min.js
+rm -f jquery*.min.js && ln -s /1/Floflis/libs/game-engines/c2/jquery-2.1.1.min.js jquery-2.1.1.min.js
 echo "-> index.html..."
 rm -f index.html && ln -s /1/Floflis/libs/game-engines/c2/index.html index.html
 echo "✓ Done patching for Construct 2."

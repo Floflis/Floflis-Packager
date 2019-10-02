@@ -1,4 +1,4 @@
-# Floflis App Boilerplate
+# Floflis Packager
 
 Make a working and lightweight Electron app for Floflis.
 
@@ -26,13 +26,14 @@ Coming soon, a application store will do these tasks automatically, without need
 
 ### To do
 
-* Floflis tree folder installable on Linux emulators
+* __Floflis tree folder installable on Linux emulators__ Internet Cat will install Floflis tree in Unices (MacOS/Linux) and Windows
 * Script to move need scripts to choosen folder
 * If node_modules is found, ask to move it
 * Ask to open Electron app, detect it doesn't opens, and teach
+* Ask if it is Construct 2
 * `c2package.sh` for packaging for Construct 2 projects
 * FMWK for C2, and symlink from `../Floflis/libs`
 * On Linuxes other than Floflis, symlink `node_modules` from `/usr/lib` instead of `/1/Floflis/libs`
 * Installed in Floflis as CLI application store
 * Support Construct 3, Godot, Unity and GDevelop engines
-* Ask if user really wants to use `npm install`
+* Ask if user really want to use `npm install`
