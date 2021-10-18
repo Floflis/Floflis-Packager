@@ -1,0 +1,55 @@
+#!/bin/sh
+
+invalid="Please enter a valid input"
+
+cat << "EOF"
+
+------------------------------
+-. .-.   .-. .-.   .-. .-.   .
+  \   \ /   \   \ /   \   \ /
+ / \   \   / \   \   / \   \
+~   `-~ `-`   `-~ `-`   `-~ `-
+  _            _           
+ |_  |   _   _|_  |  o   _ 
+ |   |  (_)   |   |  |  _> 
+                           
+        PACKAGER
+
+------------------------------
+
+EOF
+echo "- Linking NodeJS modules..."
+ln -s /usr/local/lib node_modules
+
+echo "Do you want to install node modules? [Y/n]"
+while true; do
+read installnodemodules
+case $installnodemodules in
+   [nN])
+       echo "${ok}"
+       break ;;
+   [yY])
+       echo "- Installing NodeJS modules for this app..."
+       sudo npm install -g
+   *)
+       echo "${invalid}";;
+esac
+done
+
+echo "Is this a Construct 2 game/app? [Y/n]"
+while true; do
+read itsconstruct2
+case $itsconstruct2 in
+   [nN])
+       echo "${ok}"
+       break ;;
+   [yY])
+       echo ""
+       echo "(!) Detected this app/game uses Construct 2 engine. Applying special patch for C2..."
+       chmod +x /usr/lib/floflis/packager/optionals/construct-2/c2init.sh && ./usr/lib/floflis/packager/optionals/construct-2/c2init.sh
+   *)
+       echo "${invalid}";;
+esac
+done
+
+echo "(✓) Done! Your app is ready."

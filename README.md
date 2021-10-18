@@ -5,19 +5,25 @@ Make a working and lightweight Electron app for Floflis.
 * No lots of Chromium running (not implemented yet, depends upon HTML5Apps Platform)
 * No huge node_modules folder; common modules and libraries shared between all apps on Floflis
 
-## Patching your app
+# Installing
 
-Just move `install.sh` and `config` file to your app's source. Instruct the users to download your app to `/1/Apps` folder, and to do the following command in Terminal:
+Open terminal on Plugzlr folder, and type following by pressing `[ENTER]`:
 
-```bash
-cd {path_to_your_app_folder} && sudo chmod 755 install.sh && ./install.sh
+```sh
+chmod +x install.sh && sh ./install.sh
 ```
 
-If openning Terminal direct from the folder, it is just: `chmod 755 install.sh && ./install.sh`.
+## Patching your app
+
+Instruct the users to download your app to `/1/Apps` folder, and to do the following command in Terminal:
+
+```bash
+floflis-packager
+```
 
 * No need to build your app; Floflis uses its own Electron binary. Works directly from your app's source-code.
 
-**Note for Construct 2 developers**: If your app is built with **C2 game engine** (using Electron addon), export it as `Kongregate` platform. Then, edit `config` file and on `construct2="x"`, replace `x` to `o` to confirm your project is done with Construct 2 (C2) engine.
+**Note for Construct 2 developers**: If your app is built with **C2 game engine** (using Electron addon), export it as `Kongregate` platform.
 Also, move the file `optionals/Construct 2/c2init.sh` to your app's folder (alongside `install.sh`) and distribute your C2 app with a `.tar.gz` archive release, using `c2init.sh` on every time you export your project, but then removing the symlinks for packaging a lightweight release (no need for this manual work on next versions, as it will have a script for that). Also note you can build for Construct 2 only in Floflis, but a Floflis subsystem installer will be done for other platforms.
 
 ### Additional notes
