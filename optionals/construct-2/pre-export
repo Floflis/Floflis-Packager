@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -f sw.js
+rm -f offlineClient.js
+rm -f c2webappstart.js
+rm -f jquery-2.1.1.min.js
+rm -f index.html
+
+rm -f icon.png
