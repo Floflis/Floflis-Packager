@@ -1,9 +1,31 @@
-#!/bin/bash
+#!/bin/sh
+cat << "EOF"
 
+------------------------------
+-. .-.   .-. .-.   .-. .-.   .
+  \   \ /   \   \ /   \   \ /
+ / \   \   / \   \   / \   \
+~   `-~ `-`   `-~ `-`   `-~ `-
+  _            _           
+ |_  |   _   _|_  |  o   _ 
+ |   |  (_)   |   |  |  _> 
+                           
+Construct 2 app/game patcher
+
+------------------------------
+
+EOF
+
+echo "Removing symlinks so C2 export will not break them..."
+echo "Removing sw.js..."
 rm -f sw.js
+echo "Removing offlineClient.js..."
 rm -f offlineClient.js
+echo "Removing c2webappstart.js..."
 rm -f c2webappstart.js
+echo "Removing jquery*.min.js..."
 rm -f jquery-2.1.1.min.js
+echo "Removing index.html..."
 rm -f index.html
 
-rm -f icon.png
+#rm -f icon.png
