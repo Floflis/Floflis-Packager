@@ -19,7 +19,7 @@ cat << "EOF"
 
 EOF
 echo "- Linking NodeJS modules..."
-ln -s /usr/local/lib node_modules
+ln -s /1/Floflis/libs/node_modules node_modules
 
 echo "Do you want to install node modules? [Y/n]"
 while true; do
