@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. ./install.sh || exit 1
+ln -sf /usr/share/icons/Floflis/256x256/apps/central.png icon.png
+npm start
