@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-. ./install.sh || exit 1
-ln -sf /usr/share/icons/Floflis/256x256/apps/central.png icon.png
+sh ./pre-initpreview
+floflis-packager init
 npm start

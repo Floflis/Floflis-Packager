@@ -55,15 +55,16 @@ EOF
 
 #echo "(✓) Done! Your app is ready."
 
+if [ "$1" = "init" ]; then
+   sh /usr/lib/floflis/packager/./init.sh
+fi
+
 #if [ "$1" = "c2" ] || [ "$1" = "construct" ]; then
 if [ "$1" = "c2" ]; then
    if [ "$2" = "pre-export" ]; then
-      #./usr/lib/floflis/packager/optionals/construct-2/pre-export
       sh /usr/lib/floflis/packager/optionals/construct-2/./pre-export
    fi
-fi
-
-if [ "$1" = "init" ]; then
-   #sh /usr/lib/floflis/packager/optionals/construct-2/./init.sh
-   sh /usr/lib/floflis/packager/./init.sh
+   if [ "$2" = "initpreview" ]; then
+      sh /usr/lib/floflis/packager/optionals/construct-2/./initpreview
+   fi
 fi
