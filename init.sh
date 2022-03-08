@@ -24,7 +24,7 @@ ln -sf /1/Floflis/libs/node_modules node_modules
 if [ "$construct2" = "o" ]; then
    echo "Detected this app/game uses Construct 2 engine. Applying special patch for C2..."
    chmod 755 c2init.sh
-   sh /usr/lib/floflis/packager/./c2init.sh
+   sh /usr/lib/floflis/optionals/construct-2/./c2init.sh
    echo "Done patching for Construct 2."
 fi
 echo "Done! Your app is ready."
