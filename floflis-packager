@@ -62,3 +62,8 @@ if [ "$1" = "c2" ]; then
       sh /usr/lib/floflis/packager/optionals/construct-2/./pre-export
    fi
 fi
+
+if [ "$1" = "init" ]; then
+   #sh /usr/lib/floflis/packager/optionals/construct-2/./init.sh
+   sh /usr/lib/floflis/packager/./init.sh
+fi
