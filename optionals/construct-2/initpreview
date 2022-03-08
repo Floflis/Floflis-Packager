@@ -1,5 +1,7 @@
 #!/bin/sh
 
-sh ./pre-initpreview
+if [ -f "pre-initpreview" ]; then
+   sh ./pre-initpreview
+fi
 floflis-packager init
 npm start
