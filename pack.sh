@@ -27,7 +27,7 @@ fi
 mkdir /tmp/floflis
 mkdir /tmp/floflis/packager
 mkdir /tmp/floflis/packager/application
-cp -r $application_exportsfolder /tmp/floflis/packager/application/$application_id
+cp -r "$application_exportsfolder" /tmp/floflis/packager/application/$application_id
 #echo "Copied"
 cd "/tmp/floflis/packager/application/$application_id"
 rm -rf .git #tmp, this will be moved into a pre/post hook
@@ -40,7 +40,7 @@ rm -rf .github #tmp, this will be moved into a pre/post hook
 #tar -czvf $application_id.$application_extension /tmp/floflis/packager/application
 cd /tmp/floflis/packager
 tar -czvf $application_id.$application_extension application
-mv -f $application_id.$application_extension $rocketlaunch_dir
+mv -f $application_id.$application_extension "$rocketlaunch_dir"
 #tar -czvf "$application_id.$application_extension" /tmp/floflis/packager/application
 rm -rf /tmp/floflis/packager/application
 cd "$rocketlaunch_dir"
