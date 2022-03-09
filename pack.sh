@@ -55,7 +55,7 @@ echo "Please create it."
 exit 1
 }
 
-if [ -f "manifest.webapp" ]; then
+if [ -f "$application_exportsfolder/manifest.webapp" ]; then
    proceed
 else
    fail
