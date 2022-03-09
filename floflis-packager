@@ -59,6 +59,10 @@ if [ "$1" = "init" ]; then
    sh /usr/lib/floflis/packager/./init.sh
 fi
 
+if [ "$1" = "pack" ]; then
+   sh /usr/lib/floflis/packager/./pack.sh
+fi
+
 #if [ "$1" = "c2" ] || [ "$1" = "construct" ]; then
 if [ "$1" = "c2" ]; then
    if [ "$2" = "pre-export" ]; then
