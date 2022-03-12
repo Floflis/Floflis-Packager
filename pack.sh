@@ -25,13 +25,15 @@ mkdir /tmp/floflis
 mkdir /tmp/floflis/packager
 mkdir /tmp/floflis/packager/application
 cp -r "$application_exportsfolder" /tmp/floflis/packager/application/$application_id
+cp "$rocketlaunch_dir/manifest.webapp" /tmp/floflis/packager/manifest.webapp
 cd "/tmp/floflis/packager/application/$application_id"
 rm -rf .git #tmp, this will be moved into a pre/post hook
 rm -rf .github #tmp, this will be moved into a pre/post hook
 cd /tmp/floflis/packager
-tar -czvf $application_id.$application_extension application
+tar -czvf $application_id.$application_extension application manifest.webapp
 mv -f $application_id.$application_extension "$rocketlaunch_dir"
 rm -rf /tmp/floflis/packager/application
+rm -f /tmp/floflis/packager/manifest.webapp
 cd "$rocketlaunch_dir"
 echo "Exported to $application_id.$application_extension!"
 exit 0
