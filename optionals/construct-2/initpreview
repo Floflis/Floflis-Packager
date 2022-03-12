@@ -1,14 +1,54 @@
-#!/bin/sh
+#!/bin/bash
 
 source_exportsfolder="$(jq -r '.floflispackager.exportsfolder' manifest.webapp)"
 source_rootfolder="$(echo $PWD)"
 #running_notfrom_exportsfolder="true"
 #export running_notfrom_exportsfolder
-if [ -f "$source_exportsfolder/pre-initpreview" ]; then
-   sh $source_exportsfolder/./pre-initpreview
-fi
+#if [ -f "$source_exportsfolder/pre-initpreview" ]; then
+#   sh $source_exportsfolder/./pre-initpreview
+#fi
+cd "$source_exportsfolder"
+if [ -f "$source_exportsfolder/pre-initpreview" ]; then sh $source_exportsfolder/./pre-initpreview; fi
+cd "$source_rootfolder"
 #cd "$source_exportsfolder"
 floflis-packager init
 #sh /usr/lib/floflis/packager/./init.sh
+
+if [ -f *".caproj" ]; then
+#if [ -e *".caproj" ]; then
+   #writefrom_caproj_name="$(cat *.caproj | grep -oE ".?name[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_name="$(cat *.caproj | grep -oE ".?name[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_name="$(cat *.caproj | grep -oE ".?name[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_description="$(cat *.caproj | grep -oE ".?description[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_description="$(cat *.caproj | grep -oE ".?description[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_description="$(cat *.caproj | grep -oE ".?description[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_version="$(cat *.caproj | grep -oE ".?version[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -1)"
+   #writefrom_caproj_version="$(cat *.caproj | grep -oE ".?version[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -1 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_version="$(cat *.caproj | grep -oE ".?version[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -1)"
+   #writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   ##writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   #writefrom_caproj_appid="$(cat *.caproj | grep -oE ".?app-id[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   ##writefrom_caproj_appid="$(cat *.caproj | grep -oE ".?app-id[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -dc '[:alnum:]\n\r')"
+   #writefrom_caproj_appid="$(cat *.caproj | grep -oE ".?app-id[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2)"
+   
+   #contents="$(jq ".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
+   #echo "${contents}" > manifest.webapp
+   #contents="$(jq ".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
+   #echo "${contents}" > manifest.webapp
+   #contents="$(jq ".version = \"$writefrom_caproj_version\"" manifest.webapp)" && \
+   #echo "${contents}" > manifest.webapp
+   #contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" manifest.webapp)" && \
+   #echo "${contents}" > manifest.webapp
+   #contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
+   #echo "${contents}" > manifest.webapp
+fi
+
 cd "$source_exportsfolder"
 npm start

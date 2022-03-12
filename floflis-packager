@@ -69,6 +69,7 @@ if [ "$1" = "c2" ]; then
       sh /usr/lib/floflis/packager/optionals/construct-2/./pre-export
    fi
    if [ "$2" = "initpreview" ]; then
-      sh /usr/lib/floflis/packager/optionals/construct-2/./initpreview
+      #sh /usr/lib/floflis/packager/optionals/construct-2/./initpreview
+      bash /usr/lib/floflis/packager/optionals/construct-2/initpreview
    fi
 fi
