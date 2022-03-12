@@ -4,8 +4,8 @@ source_exportsfolder="$(jq -r '.floflispackager.exportsfolder' manifest.webapp)"
 source_rootfolder="$(echo $PWD)"
 #running_notfrom_exportsfolder="true"
 #export running_notfrom_exportsfolder
-if [ -f "pre-initpreview" ]; then
-   sh ./pre-initpreview
+if [ -f "$source_exportsfolder/pre-initpreview" ]; then
+   sh $source_exportsfolder/./pre-initpreview
 fi
 #cd "$source_exportsfolder"
 floflis-packager init
