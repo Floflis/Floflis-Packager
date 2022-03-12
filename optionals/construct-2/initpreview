@@ -1,7 +1,14 @@
 #!/bin/sh
 
+source_exportsfolder="$(jq -r '.floflispackager.exportsfolder' manifest.webapp)"
+source_rootfolder="$(echo $PWD)"
+#running_notfrom_exportsfolder="true"
+#export running_notfrom_exportsfolder
 if [ -f "pre-initpreview" ]; then
    sh ./pre-initpreview
 fi
+#cd "$source_exportsfolder"
 floflis-packager init
+#sh /usr/lib/floflis/packager/./init.sh
+cd "$source_exportsfolder"
 npm start

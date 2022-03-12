@@ -16,6 +16,9 @@ Construct 2 app/game patcher
 
 EOF
 
+source_exportsfolder="$(jq -r '.floflispackager.exportsfolder' manifest.webapp)"
+source_rootfolder="$(echo $PWD)"
+cd "$source_exportsfolder"
 echo "Removing symlinks so C2 export will not break them..."
 echo "Removing sw.js..."
 rm -f sw.js
