@@ -14,36 +14,51 @@ cd "$source_rootfolder"
 floflis-packager init
 #sh /usr/lib/floflis/packager/./init.sh
 
-if [ -f *".caproj" ]; then
-   writefrom_caproj_name="$(cat *.caproj | grep -oE ".?name[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
-   # credits about using  | tr -d '[:cntrl:]' https://stackoverflow.com/questions/23816264/remove-all-special-characters-and-case-from-string-in-bash#comment59852614_23816607
-   writefrom_caproj_description="$(cat *.caproj | grep -oE ".?description[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
-   writefrom_caproj_version="$(cat *.caproj | grep -oE ".?version[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -1)"
-   writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
-   #writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
-   writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+source_c2folder=""
+if [ "$(jq -r '.floflispackager.constructfolder' manifest.webapp)" != "null" ]; then
+   source_c2folder="$(jq -r '.floflispackager.constructfolder' manifest.webapp)"
+fi
+
+process_caproj () {
+writefrom_caproj_name="$(cat *.caproj | grep -oE ".?name[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+# credits about using  | tr -d '[:cntrl:]' https://stackoverflow.com/questions/23816264/remove-all-special-characters-and-case-from-string-in-bash#comment59852614_23816607
+writefrom_caproj_description="$(cat *.caproj | grep -oE ".?description[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+writefrom_caproj_version="$(cat *.caproj | grep -oE ".?version[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -1)"
+writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+#writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
    #writefrom_caproj_appid="$(cat *.caproj | grep -oE ".?app-id[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
    
-   contents="$(jq ".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".version = \"$writefrom_caproj_version\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".author = \"$writefrom_caproj_author\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
+contents="$(jq ".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".version = \"$writefrom_caproj_version\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".author = \"$writefrom_caproj_author\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
    
-   from_manifestwebapp_default_locale="$(jq -r '.default_locale' manifest.webapp)"
-   contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
-   contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
-   echo "${contents}" > manifest.webapp
+from_manifestwebapp_default_locale="$(jq -r '.default_locale' manifest.webapp)"
+contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
+contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
+echo "${contents}" > manifest.webapp
    
-   #- task: check if a field exist; if don't create it before proceeding
+#- task: check if a field exist; if don't create it before proceeding. use wq to make it smaller
+}
+
+if [ -f *".caproj" ]; then
+   process_caproj
+else
+   if [ "$source_c2folder" != "" ]; then
+      cd "$source_c2folder"
+      process_caproj
+      cd ..
+fi
 fi
 
 cd "$source_exportsfolder"
