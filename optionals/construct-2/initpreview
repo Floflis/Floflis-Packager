@@ -36,6 +36,14 @@ if [ -f *".caproj" ]; then
    echo "${contents}" > manifest.webapp
    contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
    echo "${contents}" > manifest.webapp
+   
+   from_manifestwebapp_default_locale="$(jq -r '.default_locale' manifest.webapp)"
+   contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
+   echo "${contents}" > manifest.webapp
+   contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
+   echo "${contents}" > manifest.webapp
+   
+   #- task: check if a field exist; if don't create it before proceeding
 fi
 
 cd "$source_exportsfolder"
