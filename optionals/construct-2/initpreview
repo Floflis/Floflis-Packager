@@ -30,6 +30,8 @@ if [ -f *".caproj" ]; then
    echo "${contents}" > manifest.webapp
    contents="$(jq ".version = \"$writefrom_caproj_version\"" manifest.webapp)" && \
    echo "${contents}" > manifest.webapp
+   contents="$(jq ".author = \"$writefrom_caproj_author\"" manifest.webapp)" && \
+   echo "${contents}" > manifest.webapp
    contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" manifest.webapp)" && \
    echo "${contents}" > manifest.webapp
    contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
