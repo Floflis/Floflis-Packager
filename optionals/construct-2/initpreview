@@ -2,21 +2,15 @@
 
 source_exportsfolder="$(jq -r '.floflispackager.exportsfolder' manifest.webapp)"
 source_rootfolder="$(echo $PWD)"
-#running_notfrom_exportsfolder="true"
-#export running_notfrom_exportsfolder
-#if [ -f "$source_exportsfolder/pre-initpreview" ]; then
-#   sh $source_exportsfolder/./pre-initpreview
-#fi
 cd "$source_exportsfolder"
 if [ -f "$source_exportsfolder/pre-initpreview" ]; then sh $source_exportsfolder/./pre-initpreview; fi
 cd "$source_rootfolder"
-#cd "$source_exportsfolder"
 floflis-packager init
-#sh /usr/lib/floflis/packager/./init.sh
 
 source_c2folder=""
 if [ "$(jq -r '.floflispackager.constructfolder' manifest.webapp)" != "null" ]; then
    source_c2folder="$(jq -r '.floflispackager.constructfolder' manifest.webapp)"
+   echo "DEBUG source_c2folder: $source_c2folder"
 fi
 
 process_caproj () {
@@ -28,33 +22,90 @@ writefrom_caproj_author="$(cat *.caproj | grep -oE ".?author[^<>]*>[^<>]+" | cut
 #writefrom_caproj_authoremail="$(cat *.caproj | grep -oE ".?author-email[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
 writefrom_caproj_authorwebsite="$(cat *.caproj | grep -oE ".?author-website[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
    #writefrom_caproj_appid="$(cat *.caproj | grep -oE ".?app-id[^<>]*>[^<>]+" | cut -d'>' -f2 | head -2 | tail -2 | tr -d '[:cntrl:]')"
+
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" $manifestwebapp_base"manifest.webapp")" && \
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$manifestwebapp_base""manifest.webapp")" && \
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" \"$manifestwebapp_base\"\"manifest.webapp\")" && \
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" \"$manifestwebapp_base\"manifest.webapp)" && \
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" \"$manifestwebapp_base manifest.webapp\")" && \
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" \"${manifestwebapp_base}manifest.webapp\")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" ${manifestwebapp_base}manifest.webapp)" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "${manifestwebapp_base}manifest.webapp")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents=\"$(jq ".name = \"$writefrom_caproj_name\"" "${manifestwebapp_base}manifest.webapp")\" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" `${manifestwebapp_base}manifest.webapp`)" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#manifestwebapp_absolute_path="${manifestwebapp_base}manifest.webapp"
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" $manifestwebapp_absolute_path)" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" \"$manifestwebapp_absolute_path\")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents=`$(jq ".name = \"$writefrom_caproj_name\"" "$manifestwebapp_absolute_path")` && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents=""$(jq ".name = \"$writefrom_caproj_name\"" "$manifestwebapp_absolute_path")"" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" ""$manifestwebapp_absolute_path"")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" $(echo $manifestwebapp_absolute_path))" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" `$(echo $manifestwebapp_absolute_path)`)" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$(echo $manifestwebapp_absolute_path)")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"\ $(echo $manifestwebapp_absolute_path)")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\" $(echo $manifestwebapp_absolute_path)")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\" $manifestwebapp_absolute_path")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\" $(echo "$manifestwebapp_absolute_path")")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$(echo " ""$manifestwebapp_absolute_path")")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$(echo """$manifestwebapp_absolute_path")")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#echo "${contents}" > "$(echo """$manifestwebapp_absolute_path"
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$(echo """$manifestwebapp_absolute_path")")" && \ #finally it works!
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#echo "${contents}" > "$manifestwebapp_absolute_path" #finally it works!
+#contents="$(jq ".name = \"$writefrom_caproj_name\"" "$manifestwebapp_absolute_path")" && \ #it works!
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+#echo "${contents}" > "$manifestwebapp_absolute_path" #it works!
+contents="$(jq ".name = \"$writefrom_caproj_name\"" "${manifestwebapp_base}manifest.webapp")" && \
+# credits from https://linuxconfig.org/string-concatenation-in-bash
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".description = \"$writefrom_caproj_description\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".version = \"$writefrom_caproj_version\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".author = \"$writefrom_caproj_author\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
    
-contents="$(jq ".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".version = \"$writefrom_caproj_version\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".author = \"$writefrom_caproj_author\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".developer.name = \"$writefrom_caproj_author\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".developer.url = \"$writefrom_caproj_authorwebsite\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
+from_manifestwebapp_default_locale="$(jq -r '.default_locale' "${manifestwebapp_base}manifest.webapp")"
+contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".name = \"$writefrom_caproj_name\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
+contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".description = \"$writefrom_caproj_description\"" "${manifestwebapp_base}manifest.webapp")" && \
+echo "${contents}" > "${manifestwebapp_base}manifest.webapp"
    
-from_manifestwebapp_default_locale="$(jq -r '.default_locale' manifest.webapp)"
-contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".name = \"$writefrom_caproj_name\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-contents="$(jq ".locales.\"$from_manifestwebapp_default_locale\".description = \"$writefrom_caproj_description\"" manifest.webapp)" && \
-echo "${contents}" > manifest.webapp
-   
-#- task: check if a field exist; if don't create it before proceeding. use wq to make it smaller
+#- task: check if a field exist; if don't create it before proceeding (so new fields will be available: version, author, developer.name, developer.url). use wq to make it smaller
 }
 
 if [ -f *".caproj" ]; then
+   manifestwebapp_base=""
    process_caproj
 else
    if [ "$source_c2folder" != "" ]; then
+      echo "DEBUG again source_c2folder: $source_c2folder"
+      #manifestwebapp_base="../"
+      manifestwebapp_base="$source_rootfolder/"
+      echo "DEBUG source_rootfolder: $source_rootfolder"
       cd "$source_c2folder"
       process_caproj
       cd ..
