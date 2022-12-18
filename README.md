@@ -1,5 +1,7 @@
 # Floflis Packager
 
+<img width="250px" src="icon.svg">
+
 Make a working and lightweight Electron app for Floflis.
 
 * No lots of Chromium running (not implemented yet, depends upon HTML5Apps Platform)
