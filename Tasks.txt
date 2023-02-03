@@ -1,6 +1,5 @@
 fl c2 deduplicate "Files/icon-16.png", "Files/icon-32.png", "Files/icon-114.png", "Files/icon-128.png", "Files/icon-256.png" and "Files/loading-logo.png" files if same CID
 
-- install.sh for installing on system instead of locally
 - Ask if it is Construct 2
 - `c2package.sh` for packaging for Construct 2 projects
 
@@ -9,7 +8,8 @@ fl c2 deduplicate "Files/icon-16.png", "Files/icon-32.png", "Files/icon-114.png"
 - If node_modules is found, ask to move it
 - Ask to open Electron app, detect it doesn't opens, and teach
 - FMWK for C2, and symlink from `../Floflis/libs`
-- On Linuxes other than Floflis, symlink `node_modules` from `/usr/lib` instead of `/1/Floflis/libs`
 - Installed in Floflis as CLI application store
 - Support Construct 3, Godot, Unity and GDevelop engines
 - Ask if user really want to use `npm install`
+
+sign .apps/.game/.html5 with eth (add same note for USV pj meta)
